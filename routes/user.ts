@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
 import { createUser, fetchUser } from "../database/methods";
-import { IsEmpty } from "../validation/checks";
+import { IsEmpty, IsValidUser } from "../validation/checks";
 import { masterKey } from "../config.json";
 
 export async function getUser(req: Request, res: Response) {
     const username = req.body.username;
     const password = req.body.password;
+    const userToBeSearched = req.body.target;
 
     if (IsEmpty(username) || IsEmpty(password)) {
         return res.status(400).json({
@@ -14,7 +15,15 @@ export async function getUser(req: Request, res: Response) {
         })
     }
 
-    const user = await fetchUser(username);
+    const isUserValid = await IsValidUser(username, password);
+    if (!isUserValid) {
+        return res.status(400).json({
+            success: false,
+            message: "Invalid username or password"
+        })
+    }
+
+    const user = await fetchUser(userToBeSearched);
     if (user == null) {
         return res.status(400).json({
             success: false,
@@ -59,9 +68,10 @@ export async function addNewUser(req: Request, res: Response) {
         })
     }
 
-    await createUser(username, password, email);
+    const newUser = await createUser(username, password, email);
     return res.status(200).json({
         success: true,
-        message: "User created"
+        message: "User created",
+        user: newUser.toJSON()
     });
 }

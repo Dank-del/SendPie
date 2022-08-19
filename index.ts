@@ -10,8 +10,8 @@ app.use(cors());
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
-
 // parse application/json
+
 app.use(bodyParser.json())
 app.post('/adduser', addNewUser)
 app.post('/getuser', getUser)
@@ -22,4 +22,4 @@ sequelizeClient.sync().then(() => {
     console.log(`Encountered an error ${err}`);
 })
 
-app.listen(port);
+app.listen(port, () => console.log(`Listening on port ${port}`));
