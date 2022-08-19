@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import { sequelizeClient } from "./database/client";
 import { port } from "./config.json"
 import { addNewUser, getUser } from "./routes/user";
+import { updateLocation } from "./routes/loc";
 
 const app = express();
 app.use(cors());
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.post('/adduser', addNewUser)
 app.post('/getuser', getUser)
+app.post('/updatelocation', updateLocation)
 
 sequelizeClient.sync().then(() => {
     console.log("Database synced");
