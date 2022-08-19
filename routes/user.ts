@@ -44,6 +44,13 @@ export async function addNewUser(req: Request, res: Response) {
         })
     }
 
+    if (key !== masterKey) {
+        return res.status(400).json({
+            success: false,
+            message: "Invalid key"
+        })
+    }
+
     const user = await fetchUser(username);
     if (user != null) {
         return res.status(400).json({
