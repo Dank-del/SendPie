@@ -1,0 +1,64 @@
+[
+    {
+        "shop": "KFC",
+        "location": "Barasat, Champadali More, Kolkata",
+        "phone": "0123456789",
+        "items": [
+            {
+                "name": "5pc Leg Piece Bucket Meal",
+                "description": "Save 22% on 5 chicken Leg Pieces, 2 dips, 1 Medium Fries & a Pepsi PET [serves 2 ]",
+                "price": 619.05,
+                "veg": false
+            },
+            {
+                "name": "Veg Biryani Box",
+                "description": "Biryani lovers unite : Get 1 Veg Biryani Bucket with gravy, 1 Veg Patty & a Pepsi",
+                "price": 279.05,
+                "veg": true
+            },
+            {
+                "name": "Tandoori Zinger Burger",
+                "description": "Chicken zinger with a delicious tandoori sauce",
+                "price": 199.05,
+                "veg": false
+            },
+            {
+                "name": "Classic Zinger Meal",
+                "description": "Favorite combo of Classic Zinger Burger, Medium Fries & a chilled Pepsi Black [serves 1]",
+                "price": 344.76,
+                "veg": false
+            }
+        ]
+    },
+    {
+        "shop": "Pizza Hut",
+        "location": "HB Town Bijarpur Welfare Association, Sodepur",
+        "phone": "0123456789",
+        "items": [
+            {
+                "name": "Pizza",
+                "description": "Pizza with cheese, mushrooms, olives, onions, tomatoes, and basil",
+                "price": 299.05,
+                "veg": true
+            },
+            {
+                "name": "Pizza",
+                "description": "Pizza with cheese, mushrooms, olives, onions, tomatoes, and basil",
+                "price": 299.05,
+                "veg": true
+            },
+            {
+                "name": "Pizza",
+                "description": "Pizza with cheese, mushrooms, olives, onions, tomatoes, and basil",
+                "price": 299.05,
+                "veg": true
+            },
+            {
+                "name": "Pizza",
+                "description": "Pizza with cheese, mushrooms, olives, onions, tomatoes, and basil",
+                "price": 299.05,
+                "veg": true
+            }
+        ]
+    }
+]
