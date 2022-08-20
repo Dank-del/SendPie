@@ -21,8 +21,8 @@ app.post('/getuser', getUser);
 app.post('/updatelocation', updateLocation);
 app.get('/getshops', getShops);
 app.post('/makeorder', makeOrder);
-app.post('getorder', getOrder);
-app.post('updatedelivery', updateDeliveryPerson);
+app.post('/getorder', getOrder);
+app.post('/updatedelivery', updateDeliveryPerson);
 
 sequelizeClient.sync().then(() => {
     console.log("Database synced");

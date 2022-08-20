@@ -28,6 +28,7 @@ export async function makeOrder(req: Request, res: Response) {
 }
 
 export async function getOrder(req: Request, res: Response) {
+    // console.log(req.body);
     const orderId = req.body.orderId;
 
     if (IsEmpty(orderId)) {
@@ -38,7 +39,7 @@ export async function getOrder(req: Request, res: Response) {
     }
 
     const order = await fetchOrderById(orderId);
-    if (!order) {
+    if (order == null) {
         return res.status(404).json({
             success: false,
             message: "order not found"
