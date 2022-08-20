@@ -6,7 +6,7 @@ import { port } from "./config.json"
 import { addNewUser, getUser } from "./routes/user";
 import { updateLocation } from "./routes/loc";
 import { getShops } from "./routes/getshops";
-import { getallOrders, getOrder, makeOrder, updateDeliveryPerson } from "./routes/orders";
+import { getallOrders, getMatchingOrder, getOrder, makeOrder, updateDeliveryPerson } from "./routes/orders";
 
 const app = express();
 app.use(cors());
@@ -24,6 +24,7 @@ app.post('/makeorder', makeOrder);
 app.post('/getorder', getOrder);
 app.post('/getallorders', getallOrders)
 app.post('/updatedelivery', updateDeliveryPerson);
+app.post('/getmatchingorder', getMatchingOrder);
 
 sequelizeClient.sync().then(() => {
     console.log("Database synced");

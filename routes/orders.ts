@@ -101,3 +101,36 @@ export async function getallOrders(req: Request, res: Response) {
     orders.map((value) => jsonString.push(value.toJSON()))
     return res.status(200).json(jsonString);
 }
+
+export async function getMatchingOrder(req: Request, res: Response) {
+    const username = req.body.username;
+    const password = req.body.password;
+    const destination = req.body.destination;
+
+    if (IsEmpty(username) || IsEmpty(password) || IsEmpty(destination)) {
+        return res.status(400).json({
+            success: false,
+            message: "Username and password are required"
+        })
+    }
+
+    const user = await fetchUser(username);
+    if (!user) {
+        return res.status(400).json({
+            success: false,
+            message: "User not found"
+        })
+    }
+
+    const orders = await fetchAllOrders();
+    const jsonString: any[] = [];
+    orders.map((value) => {
+        const data = JSON.parse(value!.orderData)
+        if (data.shopLocation !== undefined && data.customerLocation !== undefined
+            && data.shopLocation.toLowerCase().includes(user.currentLocation.toLowerCase())
+            && data.customerLocation.toLowerCase().includes(destination.toLowerCase())) {
+            jsonString.push(value.toJSON())
+        }
+    })
+    return res.status(200).json(jsonString);
+}
