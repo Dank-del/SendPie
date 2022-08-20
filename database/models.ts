@@ -1,4 +1,5 @@
 import { Column, Model, Table } from "sequelize-typescript";
+import { DataTypes } from "sequelize";
 
 @Table
 export class User extends Model {
@@ -13,6 +14,21 @@ export class User extends Model {
 
     @Column
     currentLocation: string
+}
+
+@Table
+export class Orders extends Model {
+    @Column({primaryKey: true})
+    orderId: string
+
+    @Column(DataTypes.TEXT)
+    orderData: string
+
+    @Column
+    byUsername: string
+
+    @Column
+    toBeDeliveredByUsername: string
 }
 
 @Table

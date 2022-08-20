@@ -61,7 +61,7 @@ export async function addNewUser(req: Request, res: Response) {
     }
 
     const user = await fetchUser(username);
-    if (user != null) {
+    if (user !== null) {
         return res.status(400).json({
             success: false,
             message: "User already exists"
