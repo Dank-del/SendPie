@@ -6,7 +6,7 @@ import { port } from "./config.json"
 import { addNewUser, getUser } from "./routes/user";
 import { updateLocation } from "./routes/loc";
 import { getShops } from "./routes/getshops";
-import { getOrder, makeOrder, updateDeliveryPerson } from "./routes/orders";
+import { getallOrders, getOrder, makeOrder, updateDeliveryPerson } from "./routes/orders";
 
 const app = express();
 app.use(cors());
@@ -22,6 +22,7 @@ app.post('/updatelocation', updateLocation);
 app.get('/getshops', getShops);
 app.post('/makeorder', makeOrder);
 app.post('/getorder', getOrder);
+app.post('/getallorders', getallOrders)
 app.post('/updatedelivery', updateDeliveryPerson);
 
 sequelizeClient.sync().then(() => {

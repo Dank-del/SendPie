@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createNewOrder, fetchOrderById, fetchUser, updateDeliveryPersonByOrderId } from "../database/methods";
+import { createNewOrder, fetchAllOrders, fetchOrderById, fetchUser, updateDeliveryPersonByOrderId } from "../database/methods";
 import { IsEmpty, IsValidUser } from "../validation/checks";
 
 export async function makeOrder(req: Request, res: Response) {
@@ -85,4 +85,19 @@ export async function updateDeliveryPerson(req: Request, res: Response) {
         message: "order updated",
         order: await fetchOrderById(orderId)
     })
+}
+
+export async function getallOrders(req: Request, res: Response) {
+    const key = req.body.key;
+    if (IsEmpty(key)) {
+        return res.status(400).json({
+            success: false,
+            message: "key is required"
+        })
+    }
+
+    const orders = await fetchAllOrders();
+    const jsonString: any[] = [];
+    orders.map((value) => jsonString.push(value.toJSON()))
+    return res.status(200).json(jsonString);
 }

@@ -56,3 +56,7 @@ export async function updateUserLocation(username: string, location: string) {
         }
     });
 }
+
+export async function fetchAllOrders(){
+    return await Orders.findAll();
+}
