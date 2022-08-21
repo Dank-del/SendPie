@@ -125,11 +125,19 @@ export async function getMatchingOrder(req: Request, res: Response) {
     const orders = await fetchAllOrders();
     const jsonString: any[] = [];
     orders.map((value) => {
-        const data = JSON.parse(value!.orderData)
+        const data = JSON.parse(JSON.parse(value!.orderData));
+        console.log(data);
+        console.log(data.shopLocation);
+        console.log(data.customerLocation);
         if (data.shopLocation !== undefined && data.customerLocation !== undefined
             && data.shopLocation.toLowerCase().includes(user.currentLocation.toLowerCase())
             && data.customerLocation.toLowerCase().includes(destination.toLowerCase())) {
-            jsonString.push(value.toJSON())
+            jsonString.push({
+                orderId: value!.orderId,
+                orderData: JSON.parse(value!.orderData),
+                byUsername: value!.byUsername,
+                toBeDeliveredByUsername: value!.toBeDeliveredByUsername,
+            })
         }
     })
     return res.status(200).json(jsonString);
